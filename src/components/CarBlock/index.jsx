@@ -1,43 +1,71 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from '../../../styles/components/CarBlock/index.sass';
 import Grid from 'react-css-grid';
 import Slider from '../Slider'
+import Proptypes from 'prop-types'
 
-const CarBlock = () => (
-  <div className={styles.CarBlock}>
-    <Grid>
-      <div>
-        <img src={'https://content.homenetiol.com/2001593/2112019/640x480/1e51cbbcff53413a9ae96743dcd655d9.jpg'} />
-      </div>
-      <div>
-        <Grid
-          width={100}
-        >
-          <div className='primary'>Car type</div>
-        </Grid>
-        <Grid
-          width={100}
-        >
-          <div className='secondary'>VIN: 123213</div>
-        </Grid>
-        <Grid
-          width={100}
-        >
-          <div className='secondary'>STK: 123213</div>
-          <div className='secondary'>MILES: 123213</div>
-        </Grid>
-        <Grid
-          width={100}
-        >
-          <div className='secondary'>STK: 123213</div>
-          <div className='secondary'>MILES: 123213</div>
-        </Grid>
-      </div>
-      <div>
-        <Slider />
-      </div>
-    </Grid>
-  </div>
-);
+export default class CarBlock extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {isSelected: false};
+    this.selectCar = this.selectCar.bind(this);
+  }
 
-export default CarBlock;
+  selectCar = (e) => {
+    this.setState({
+      isSelected: e.target.checked
+    })
+  }
+
+  render () {
+    const { vehicles } = this.props
+    if (!vehicles) return null;
+    return (
+      <div className={styles.CarBlock} >
+      {
+        vehicles.map((vehicle, i) => (
+        <Grid key={i} >
+          <div>
+            <input type='checkbox' onChange={this.selectCar} checked={this.state.isSelected} />
+          </div>
+          <div>
+            <img src={vehicle.chrome_image_url} className={styles.CarImage}/>
+          </div>
+          <div>
+            <Grid
+              width={100}
+            >
+              <div className='primary'>{vehicle.model_year} {vehicle.make} {vehicle.model}</div>
+            </Grid>
+            <Grid
+              width={100}
+            >
+              <div className='secondary'>VIN: {vehicle.id}</div>
+            </Grid>
+            <Grid
+              width={100}
+            >
+              <div className='secondary'>MAKE: {vehicle.model}</div>
+              <div className='secondary'>TRIM: {vehicle.trim}</div>
+            </Grid>
+            <Grid
+              width={100}
+            >
+              <div className='secondary'>STK: {vehicle.product_financials[0].id}</div>
+              <div className='secondary'>MILES: {vehicle.mileage}</div>
+            </Grid>
+          </div>
+          <div>
+            <Slider />
+          </div>
+        </Grid>
+        ))
+      }
+    </div>
+    )
+  }
+}
+
+CarBlock.propTypes = {
+  vehicles: Proptypes.array,
+}

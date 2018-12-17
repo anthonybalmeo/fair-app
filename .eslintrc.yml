@@ -1,6 +1,7 @@
 ---
   extends:
-    - plugin:react/recommended
+    - babel-eslint
+  parser: babel-eslint
 
   env:
     browser: true
