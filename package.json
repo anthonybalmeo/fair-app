@@ -1,10 +1,11 @@
 {
-  "name": "react-webpack-babel",
+  "name": "fair-interview",
   "version": "0.0.4",
-  "description": "React Webpack Babel Starter Kit",
+  "description": "Fair App Interview",
   "main": "''",
   "scripts": {
     "build": "webpack --config webpack.production.config.js --progress --profile --colors",
+    "now-build": "npm run build && mv public dist",
     "serve:build": "npm run build && node server.js",
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
@@ -19,14 +20,24 @@
   "license": "MIT",
   "homepage": "https://github.com/ReactJSResources/react-webpack-babel#readme",
   "dependencies": {
+    "animate.css": "^3.7.0",
+    "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
+    "classnames": "^2.2.6",
+    "flexboxgrid-sass": "^8.0.5",
     "normalize.css": "^7.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
+    "react-number-format": "^4.0.5",
+    "react-rangeslider": "^2.2.0",
+    "react-slick": "^0.23.2",
+    "reselect": "^4.0.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.6",
     "babel-jest": "^22.0.4",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -35,11 +46,12 @@
     "babel-plugin-webpack-alias": "2.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "css-loader": "^0.28.7",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.13.1",
+    "eslint": "^4.19.1",
     "eslint-plugin-jest": "^21.5.0",
     "eslint-plugin-react": "^7.5.1",
     "express": "^4.16.2",
@@ -50,10 +62,15 @@
     "loglevel": "^1.6.0",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.0.9",
+    "prop-types": "^15.6.2",
     "react-hot-loader": "^4.0.0",
+    "react-redux": "^6.0.0",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "react-test-renderer": "^16.2.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "sass-loader": "^6.0.6",
     "sass-resources-loader": "1.3.2",
     "source-map-loader": "0.2.3",
@@ -66,6 +83,7 @@
   },
   "jest": {
     "verbose": true,
+    "testURL": "http://localhost/",
     "bail": true,
     "collectCoverage": true,
     "coverageDirectory": "coverage",
@@ -79,6 +97,9 @@
     ],
     "moduleDirectories": [
       "node_modules"
+    ],
+    "setupFiles": [
+      "./src/setupTests.js"
     ]
   }
 }

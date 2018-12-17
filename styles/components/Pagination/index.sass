@@ -1,0 +1,37 @@
+.pagination
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  width: 100%
+  margin: 0 auto
+  position: relative
+  margin: 2rem 0 4rem
+
+.paginationLinkContainer
+  text-align: center
+  margin: 0 1rem
+
+.paginationLink
+  border-radius: 50%
+  border: 1px solid $color-secondary
+  width: 30px
+  height: 30px
+  line-height: 30px
+  text-decoration: none
+  color: $color-secondary
+  display: block
+  transition: all 0.3s ease
+
+  &:hover
+    color: $color-bg-primary
+    background-color: $color-highlight
+    border-color: $color-highlight
+
+.paginationLinkActive
+  background-color: $color-highlight
+  border-color: $color-highlight
+  color: $color-bg-primary
+
+.paginationLinkInactive
+  opacity: 0.5
+  pointer-events: none

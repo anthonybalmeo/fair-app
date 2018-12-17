@@ -1,128 +1,72 @@
-
 <p align="center">
-    <h3 align="center">Simple React Webpack Babel Starter Kit<br></h3>
+    <h3 align="center">FAIR | Take home Interview<br></h3>
 </p>
 
 [![CircleCI](https://circleci.com/gh/ReactJSResources/react-webpack-babel/tree/master.svg?style=svg)](https://circleci.com/gh/ReactJSResources/react-webpack-babel/tree/master)
 
 [![Dependency Status](https://img.shields.io/david/ReactJSResources/react-webpack-babel.svg)](https://david-dm.org/dylang/npm-check)
 
-Tired of complicated starters with 200MB of dependencies which are hard to understand and modify? This is for you!
+## Simple React Car Listing App
 
-### What were using
+### Developed by Anthony Balmeo
 
-* React 16
-* Webpack 3
-* React Router 4
-* SASS
-* Babel Cli
-* Hot Module Reloading
-* Jest 21 
-* Enzyme 3 for testing
+A simple React app that hits an Apiary stubbed API endpoint to display a list of cars and a car details page.
 
-### Features
+As a bonus, I deployed the project to now.sh. You can review the experience here:
 
-* Simple src/index.jsx and src/index.css (local module css).
-* Webpack configuration for development (with hot reloading) and production (with minification).
-* CSS module loading, so you can include your css by ```import styles from './path/to.css';```.
-* Both js(x) and css hot loaded during development.
-* [Webpack Dashboard Plugin](https://github.com/FormidableLabs/webpack-dashboard) on dev server.
+URL: https://fair-app-hlzxhzsebu.now.sh
 
-### To run
+***
+#### Architecture
+- Used a container/component approach. Will load necessary data in the container and wrap data with HOC.
+- Styles are broken down by components and shareable styles. Made to be responsive as well.
+- Utilized `flexboxgrid-sass` for simple grid solution.
+- Broke down necessary components for reusable around different pages.
+- Build a loading screen component to display when data is loading.
+- WithModel will do any data loading needed. Will take in an optional loading. component
+- Added jest component testing.
+- Added prop checking with `PropTypes`.
+- Created fixture files for reusable test data.
+- Action/Reducers in store to manage state [`react-redux`].
+- States in redux:
+    - `vehicle`
+        - The vehicle in details route.
+    - `vehicles`
+        - List an array of vehicles for a page returned by the endpoint
+    - `favoriteVehicles`
+        - List an array of objects of VIN Ids. Used to keep state of favorited vehicles.
+    - `paymentPermiles`
+        - Saves the selected monthly payments and desired mileage. Used to show changes in payments when mileage is adjusted in the details route.
+- Fun open animation when hitting root url `/`
+- Deployed to now.sh via Docker
 
-* You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
-* Fork and clone the project:
+***
 
-```
-git clone https://github.com/ReactJSResources/react-webpack-babel.git
-```
+#### Car Listing Page
+- URL: `/listing` or `/listing/#` (`#` = number value for page route)
+- If `listing` is hit via url, it will redirect to `/listing/1`.
+- Displays a list of cars returned by the stubbed endpoint.
+- Saves vehicle data using redux to state.
+- Prevents loading the endpoint again if the data is already loaded into state.
+- Has a favorite feature that persist per car when going between the car listing and car details route.
+- Implemented pagination
+- `console.error(e)` if endpoint does not return value.
 
-* Then install the dependencies:
+##### Note:
 
-```
-npm install
-```
+I made the car listing page similar to what you have in production vs the reference. I chose to do this since the reference is missing certain data points to display things similar to the design provided.
 
-* Run development server:
+***
 
-```
-npm start
-```
+#### Car Details Page
+- URL: `/detail/{vin}` (`{vin}`: Vehicle ID to load vehicle).
+- Displays a specific car identified by the {vin}.
+- Will check if `vehicle` is already in `vehicles` state before trying to hit the endpoint. Prevents from loading endpoint multiple times if data is already available.
+- Implemented a gallery using `react-slick`.
+- Using `react-number-format` to display pricing and mileage in the 1,000s format.
+- Implemented a slider using `react-rangeslider` to calculate monthly prices per yearly mileage adjustment.
+    - This will update state to save the specific monthly payment and mileage desired.
+- Favorite feature is available here too. The state of the favorite is persistent between the listing and detail route.
 
-* Or you can run development server with [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard):
-
-```
-npm run dev
-```
-
-Open the web browser to `http://localhost:8888/`
-
-### To test
-To run unit tests:
-
-```
-npm test
-```
-
-Tests come bundled with:
-
-* Jest
-* Enzyme
-* React Test Utils
-* React Test Renderer
-
-### To build the production package
-
-```
-npm run build
-```
-
-### Running build locally
-
-```
-npm run serve:build
-```
-
-### Nginx Config
-
-Here is an example Nginx config:
-
-```
-server {
-	# ... root and other options
-
-	gzip on;
-	gzip_http_version 1.1;
-	gzip_types text/plain text/css text/xml application/javascript image/svg+xml;
-
-	location / {
-		try_files $uri $uri/ /index.html;
-	}
-
-	location ~ \.html?$ {
-		expires 1d;
-	}
-
-	location ~ \.(svg|ttf|js|css|svgz|eot|otf|woff|jpg|jpeg|gif|png|ico)$ {
-		access_log off;
-		log_not_found off;
-		expires max;
-	}
-}
-```
-
-### Eslint
-There is a `.eslint.yaml` config for eslint ready with React plugin.
-
-To run linting, run:
-
-```
-npm run lint
-```
-
-### Notes on importing css styles
-* styles having /src/ in their absolute path considered part of the application and exported as local css modules.
-* other styles considered global styles used by components and included in the css bundle directly.
-
-### Contribute
-Please contribute to the project if you know how to make it better, including this README :)
+##### Note:
+Since most endpoints are not stubbed after the first two cars, my `catch` error returns to the listing page.
