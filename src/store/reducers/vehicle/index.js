@@ -1,7 +1,6 @@
 import { SAVE_VEHICLE } from '../../actions'
 
-const initialState = {
-};
+const initialState = null;
 
 
 const vehicle = (state = initialState, action) => {

@@ -25,7 +25,7 @@ const routerProps = (state, ownProps) => ({
   vehicleVin: ownProps.match.params.vehicleVin,
 })
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   vehicle: state.vehicle,
 })
 

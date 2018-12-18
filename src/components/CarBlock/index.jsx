@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../../styles/components/CarBlock/index.sass';
-import Grid from 'react-css-grid';
 import Slider from '../Slider'
 import Proptypes from 'prop-types'
 
@@ -19,46 +19,30 @@ export default class CarBlock extends Component {
 
   render () {
     const { vehicle } = this.props
-    if (!vehicle) return null;
     return (
-      <div className={styles.CarBlock} >
-        <Grid>
-            <div>
-              <input type='checkbox' onChange={this.selectCar} checked={this.state.isSelected} />
+      <div className={`row middle-xs ${styles.CarBlock}`}>
+        <div className='col-xs-3'>
+          <input type='checkbox' onChange={this.selectCar} checked={this.state.isSelected} />
+          <Link to={`/detail/${vehicle.id}`}>
+            <img src={vehicle.chrome_image_url} className={styles.CarImage} alt={vehicle.model}/>
+          </Link>
+        </div>
+        <div className='col-xs-5'>
+          <div className='box box-container'>
+            <div className='row'>
+              <div className='primary col-xs-12'>{vehicle.model_year} {vehicle.make} {vehicle.model}</div>
+              <div className='secondary col-xs-12'>VIN: {vehicle.id}</div>
+              <div className='secondary col-xs-6'>MAKE: {vehicle.model}</div>
+              <div className='secondary col-xs-6'>TRIM: {vehicle.trim}</div>
+              <div className='secondary col-xs-6'>STK: {vehicle.product_financials[0].id}</div>
+              <div className='secondary col-xs-6'>MILES: {vehicle.mileage}</div>
             </div>
-            <div>
-              <img src={vehicle.chrome_image_url} className={styles.CarImage}/>
-            </div>
-            <div>
-              <Grid
-                width={100}
-              >
-                <div className='primary'>{vehicle.model_year} {vehicle.make} {vehicle.model}</div>
-              </Grid>
-              <Grid
-                width={100}
-              >
-                <div className='secondary'>VIN: {vehicle.id}</div>
-              </Grid>
-              <Grid
-                width={100}
-              >
-                <div className='secondary'>MAKE: {vehicle.model}</div>
-                <div className='secondary'>TRIM: {vehicle.trim}</div>
-              </Grid>
-              <Grid
-                width={100}
-              >
-                <div className='secondary'>STK: {vehicle.product_financials[0].id}</div>
-                <div className='secondary'>MILES: {vehicle.mileage}</div>
-              </Grid>
-            </div>
-            <div>
-              <Slider />
-            </div>
-          </Grid>
-      }
-    </div>
+          </div>
+        </div>
+        <div className='col-xs-4'>
+          <Slider />
+        </div>
+      </div>
     )
   }
 }

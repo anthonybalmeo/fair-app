@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "6.26.0",
+    "flexboxgrid-sass": "^8.0.5",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -55,7 +56,6 @@
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.0.9",
     "prop-types": "^15.6.2",
-    "react-css-grid": "^2.0.0-0",
     "react-hot-loader": "^4.0.0",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",

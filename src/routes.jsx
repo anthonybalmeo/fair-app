@@ -11,13 +11,13 @@ import CarDetails from './containers/CarDetails';
 
 const Routes = () => (
   <Router>
-    <div>
+    <React.Fragment>
       <Route exact path="/" component={App}/>
       <Route path="/about" component={About}/>
       <Route path="/sample" component={Sample}/>
       <Route path="/listing/:page" component={CarListing}/>
       <Route path="/detail/:vehicleVin" component={CarDetails}/>
-    </div>
+    </React.Fragment>
   </Router>
 );
 
