@@ -23,9 +23,9 @@
     "babel-polyfill": "6.26.0",
     "flexboxgrid-sass": "^8.0.5",
     "normalize.css": "^7.0.0",
-    "rc-slider": "^8.6.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-rangeslider": "^2.2.0",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
