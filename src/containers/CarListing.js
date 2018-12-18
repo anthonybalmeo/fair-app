@@ -1,24 +1,13 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { saveVehicles } from '../store/actions'
 import CarListingPage from '../components/CarListingPage'
 import WithModel from '../components/WithModel'
 import store from '../store'
-
-export const loadVehicles = (pageId, dispatch) => {
-  return fetch(`https://private-4e19e-interviewapi3.apiary-mock.com/vehicles?page=${pageId}`)
-  .then(response => response.json())
-  .then(dataResponse => {
-    const {
-      vehicles,
-    } = dataResponse.data
-    dispatch(saveVehicles(vehicles))
-  })
-}
+import { fetchVehicleByPage } from '../store/actions'
 
 const loadModel = async (props) => {
   const { pageId } = props
-  await loadVehicles(pageId, store.dispatch)
+  await store.dispatch(fetchVehicleByPage(pageId))
 }
 
 const routerProps = (state, ownProps) => ({
