@@ -25,6 +25,7 @@
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-number-format": "^4.0.5",
     "react-rangeslider": "^2.2.0",
     "reselect": "^4.0.0"
   },
