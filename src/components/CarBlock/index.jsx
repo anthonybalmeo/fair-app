@@ -52,8 +52,8 @@ export default class CarBlock extends Component {
         </div>
         <div className='col-xs-4'>
           <SliderComponent
-            min={product_financials[0].monthly_payment_cents}
-            max={product_financials[0].start_fee_cents}
+            minimumMonthlyFee={product_financials[0].monthly_payment_cents}
+            startingFee={product_financials[0].start_fee_cents}
           />
         </div>
       </div>
