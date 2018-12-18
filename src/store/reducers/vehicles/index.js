@@ -1,7 +1,6 @@
 import { SAVE_VEHICLES } from '../../actions'
 
 const initialState = {
-  vehicles: [],
 };
 
 

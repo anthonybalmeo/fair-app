@@ -1,36 +1,36 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { saveVehicles } from '../store/actions'
-import CarListingPage from '../components/CarListingPage'
+import { saveVehicle } from '../store/actions'
+import CarDetailsPage from '../components/CarDetailsPage'
 import WithModel from '../components/WithModel'
 import store from '../store'
 
-export const loadVehicles = (pageId, dispatch) => {
-  return fetch(`https://private-4e19e-interviewapi3.apiary-mock.com/vehicles?page=${pageId}`)
+export const loadVehicle = (vehicleVin, dispatch) => {
+  return fetch(`https://private-4e19e-interviewapi3.apiary-mock.com/vehicles/${vehicleVin}`)
   .then(response => response.json())
   .then(dataResponse => {
     const {
-      vehicles,
+      vehicle,
     } = dataResponse.data
-    dispatch(saveVehicles(vehicles))
+    dispatch(saveVehicle(vehicle))
   })
 }
 
 const loadModel = async (props) => {
-  const { pageId } = props
-  await loadVehicles(pageId, store.dispatch)
+  const { vehicleVin } = props
+  await loadVehicle(vehicleVin, store.dispatch)
 }
 
 const routerProps = (state, ownProps) => ({
-  pageId: ownProps.match.params.page,
+  vehicleVin: ownProps.match.params.vehicleVin,
 })
 
 const mapStateToProps = (state) => ({
-  vehicles: state.vehicles,
+  vehicle: state.vehicle,
 })
 
 export default compose(
   connect(routerProps),
   WithModel(loadModel),
   connect(mapStateToProps)
-)(CarListingPage)
+)(CarDetailsPage)
