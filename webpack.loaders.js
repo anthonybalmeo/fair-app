@@ -35,6 +35,7 @@ module.exports = [
   // =========
   // = Fonts =
   // =========
+  { test: /\.(png|woff|woff2|eot|ttf|svg|gif)$/, loader: 'url-loader?limit=100000' },
   {
     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
     exclude: path.resolve(__dirname, "node_modules"),

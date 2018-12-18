@@ -27,12 +27,21 @@ export default class CarBlock extends Component {
         mileage,
         model,
         model_year,
+        image_location_list,
         product_financials,
         trim,
       }
     } = this.props
+
     const monthlyPayments = product_financials[0].monthly_payment_cents/100
     const startingFee = product_financials[0].start_fee_cents/100
+    const sliderSettings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
     return (
       <div className={`row middle-xs ${styles.CarBlock}`}>
         <div className='col-xs-6 ui__text-align--left'>
@@ -73,6 +82,7 @@ CarBlock.propTypes = {
     mileage: Proptypes.number,
     model: Proptypes.string,
     model_year: Proptypes.string,
+    image_location_list: Proptypes.arrayOf(Proptypes.string),
     product_financials: Proptypes.arrayOf(
       Proptypes.shape({
         id: Proptypes.number,
