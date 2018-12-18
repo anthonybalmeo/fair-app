@@ -3,6 +3,8 @@ import axios from 'axios'
 // ACTION TYPES
 export const SAVE_VEHICLES = 'SAVE_VEHICLES';
 export const SAVE_VEHICLE = 'SAVE_VEHICLE';
+export const SAVE_FAVORITE_VEHICLES = 'SAVE_FAVORITE_VEHICLES';
+export const REMOVE_FAVORITE_VEHICLES = 'REMOVE_FAVORITE_VEHICLES';
 export const FETCH_VEHICLE_BY_PAGE = 'FETCH_VEHICLE_BY_PAGE'
 const apiUrl = 'https://private-4e19e-interviewapi3.apiary-mock.com/vehicles'
 
@@ -11,6 +13,20 @@ export const saveVehicles = vehicles => ({
   type: SAVE_VEHICLES,
   payload: {
     vehicles,
+  }
+});
+
+export const saveFavoriteVehicles = vin => ({
+  type: SAVE_FAVORITE_VEHICLES,
+  payload: {
+    vin,
+  }
+});
+
+export const removeFavoriteVehicles = vin => ({
+  type: REMOVE_FAVORITE_VEHICLES,
+  payload: {
+    vin,
   }
 });
 

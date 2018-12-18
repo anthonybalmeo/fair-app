@@ -8,11 +8,22 @@ import NumberFormat from 'react-number-format';
 export default class CarBlock extends Component {
   constructor(props) {
     super(props);
-    this.state = { isFavorited: false };
-    this.selectCar = this.selectCar.bind(this);
+    const {
+      vehicle: {
+        isFavorite,
+      },
+    } = props
+
+    this.state = { isFavorited: isFavorite };
+    this.selectFavoriteCar = this.selectFavoriteCar.bind(this);
   }
 
-  selectCar = (e) => {
+  selectFavoriteCar = (e) => {
+    const isChecked = e.target.checked
+    isChecked
+      ? this.props.saveFavoriteVehicles(e.target.id)
+      : this.props.removeFavoriteVehicles(e.target.id)
+
     this.setState({
       isFavorited: e.target.checked
     })
@@ -27,21 +38,14 @@ export default class CarBlock extends Component {
         mileage,
         model,
         model_year,
-        image_location_list,
         product_financials,
         trim,
-      }
+      },
     } = this.props
 
     const monthlyPayments = product_financials[0].monthly_payment_cents/100
     const startingFee = product_financials[0].start_fee_cents/100
-    const sliderSettings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
+
     return (
       <div className={`row middle-xs ${styles.CarBlock}`}>
         <div className='col-xs-6 ui__text-align--left'>
@@ -61,8 +65,13 @@ export default class CarBlock extends Component {
         </div>
         <div className='col-xs-6 ui__text-align--left'>
           <div className='checkbox-container'>
-            <input type='checkbox' id={`vin-${id}`} className={styles.FavoriteCheckbox} onChange={this.selectCar} checked={this.state.isFavorited} />
-            <label htmlFor={`vin-${id}`}></label>
+            <input
+              type='checkbox' id={`${id}`}
+              className={styles.FavoriteCheckbox}
+              onChange={this.selectFavoriteCar}
+              defaultChecked={this.state.isFavorited}
+            />
+            <label htmlFor={`${id}`}></label>
           </div>
         </div>
         <div className='col-xs-6 ui__text-align--right'>
@@ -82,12 +91,12 @@ CarBlock.propTypes = {
     mileage: Proptypes.number,
     model: Proptypes.string,
     model_year: Proptypes.string,
-    image_location_list: Proptypes.arrayOf(Proptypes.string),
     product_financials: Proptypes.arrayOf(
       Proptypes.shape({
         id: Proptypes.number,
         monthly_payment_cents: Proptypes.number,
         start_fee_cents: Proptypes.number,
-    }))
+    })),
+    isFavorite: Proptypes.bool,
   }),
 }
