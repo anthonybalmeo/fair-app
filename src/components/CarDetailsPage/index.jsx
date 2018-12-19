@@ -63,7 +63,7 @@ export default class CarDetailsPage extends Component {
     const startingPayments = product_financials[0].start_fee_cents/100
 
     return (
-      <div className='ui__bg-color--secondary'>
+      <div className='ui__bg-color--secondary animated fadeIn'>
         <div className='wrapper'>
           <div className='row middle-xs'>
             <div className='col-xs-offset-2 col-xs-8 ui__mb--3'>

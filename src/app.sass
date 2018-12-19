@@ -1,5 +1,58 @@
 // Mixins and other abstracts definition (ex. variables) from
 // styles/abstracts/ will be included in any sass files
+.logo
+  position: absolute
+  // left: 50%
+  // top: 50%
+  transform: translate(-50%, -50%)
+  width: 150px
 
-.redButton
-  +button($red)
+.wrap
+  display: flex
+  justify-content: center
+  flex-direction: column
+  height: 100vh
+  overflow: hidden
+
+.top, .bottom
+  position: relative
+  z-index: 1
+  height: 50vh
+  transition: transform 500ms ease 1000ms
+
+.top
+  background: $color-highlight
+
+.bottom
+  background: $color-highlight
+
+.button
+  align-self: center
+  position: absolute
+  background: #222
+  color: #fff
+  padding: 15px 30px
+  cursor: pointer
+  position: relative
+  z-index: 2
+  margin: -24px 0
+  transition: transform 300ms ease 300ms
+
+.up
+  transform: translateY(-100%)
+
+.left
+  transform: translateX(-100%)
+
+.down
+  transform: translateY(100%)
+
+.content
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  display: flex
+  align-items: center
+  justify-content: center
