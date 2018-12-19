@@ -3,11 +3,17 @@ import { compose } from 'redux'
 import CarListingPage from '../components/CarListingPage'
 import WithModel from '../components/WithModel'
 import store from '../store'
-import { fetchVehicleByPage, saveFavoriteVehicles, removeFavoriteVehicles } from '../store/actions'
+import {
+  fetchVehicleByPage,
+  saveFavoriteVehicles,
+  removeFavoriteVehicles,
+  clearMonthlyVehiclePayments,
+} from '../store/actions'
 
 const loadModel = async (props) => {
   const { pageId } = props
   await store.dispatch(fetchVehicleByPage(pageId))
+  store.dispatch(clearMonthlyVehiclePayments())
 }
 
 const routerProps = (state, ownProps) => ({

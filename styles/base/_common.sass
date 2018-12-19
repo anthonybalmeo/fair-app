@@ -3,6 +3,7 @@
 @import '~slick-carousel/slick/slick.css'
 @import '~slick-carousel/slick/slick-theme.css'
 
+// RANGE SLIDER
 .rangeslider-horizontal
   .rangeslider
     &__fill
@@ -18,8 +19,40 @@
       &:after
         display: none
 
+// IMAGE GALLERY OVERRIDE
+.slick-prev,
+.slick-next
+  height: 30px
+  width: 30px
 
+.slick-prev
+  left: -20%
+.slick-next
+  right: -20%
+
+.slick-prev:before,
+.slick-next:before
+  color: $color-primary
+  font-size: 2rem
+
+
+// UI ELEMENTS
 .ui
+  &__border
+    border-width: 1px
+    border-color: $color-secondary
+
+    &--all
+      border-style: solid
+    &--t
+      border-top-style: solid
+    &--r
+      border-right-style: solid
+    &--b
+      border-bottom-style: solid
+    &--l
+      border-left-style: solid
+
   &__bg-color
     &--primary
       background-color: $color-bg-primary
@@ -33,3 +66,38 @@
       text-align: left
     &--right
       text-align: right
+
+
+// MARGIN + PADDING SPACING BY REM
+@for $i from 0 through 4
+  $size: $i * $spacer
+
+  // Padding
+  .ui__p--#{$i}
+    padding: $size
+  .ui__pb--#{$i}
+    padding-bottom: $size
+  .ui__pl--#{$i}
+    padding-left: $size
+  .ui__pr--#{$i}
+    padding-right: $size
+  .ui__pt--#{$i}
+    padding-top: $size
+
+  // Margin
+  .ui__m--#{$i}
+    margin: $size
+  .ui__mb--#{$i}
+    margin-bottom: $size
+  .ui__ml--#{$i}
+    margin-left: $size
+  .ui__mr--#{$i}
+    margin-right: $size
+  .ui__mt--#{$i}
+    margin-top: $size
+
+  // Margin Auto
+  .ui__ml--a
+    margin-left: auto
+  .ui__mr--a
+    margin-right: auto
