@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../../styles/components/CarBlock/index.sass';
 import Proptypes from 'prop-types';
 import NumberFormat from 'react-number-format';
 
 
-export default class CarBlock extends Component {
+export default class CarBlock extends React.Component {
   constructor(props) {
     super(props);
     const {
       vehicle: {
         isFavorite,
       },
-    } = props
+    } = props;
 
     this.state = { isFavorited: isFavorite };
     this.selectFavoriteCar = this.selectFavoriteCar.bind(this);
@@ -20,13 +20,13 @@ export default class CarBlock extends Component {
 
   selectFavoriteCar = (e) => {
     const isChecked = e.target.checked
-    isChecked
-      ? this.props.saveFavoriteVehicles(e.target.id)
-      : this.props.removeFavoriteVehicles(e.target.id)
+      isChecked
+        ? this.props.saveFavoriteVehicles(e.target.id)
+        : this.props.removeFavoriteVehicles(e.target.id);
 
     this.setState({
       isFavorited: e.target.checked
-    })
+    });
   }
 
   render () {
@@ -41,10 +41,10 @@ export default class CarBlock extends Component {
         product_financials,
         trim,
       },
-    } = this.props
+    } = this.props;
 
-    const monthlyPayments = product_financials[0].monthly_payment_cents/100
-    const startingFee = product_financials[0].start_fee_cents/100
+    const monthlyPayments = product_financials[0].monthly_payment_cents / 100;
+    const startingFee = product_financials[0].start_fee_cents / 100;
 
     return (
       <div className={`row middle-xs ${styles.CarBlock}`} data-test-id='car-block'>
@@ -88,6 +88,8 @@ export default class CarBlock extends Component {
 }
 
 CarBlock.propTypes = {
+  saveFavoriteVehicles: Proptypes.func,
+  removeFavoriteVehicles: Proptypes.func,
   vehicle: Proptypes.shape({
     chrome_image_url: Proptypes.string,
     id: Proptypes.string,

@@ -95,6 +95,9 @@
     ],
     "moduleDirectories": [
       "node_modules"
+    ],
+    "setupFiles": [
+      "./src/setupTests.js"
     ]
   }
 }

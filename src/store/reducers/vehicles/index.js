@@ -1,4 +1,4 @@
-import { SAVE_VEHICLES } from '../../actions'
+import { SAVE_VEHICLES } from '../../actions';
 
 const initialState = null;
 

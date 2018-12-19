@@ -1,24 +1,27 @@
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-import CarListingPage from '../components/CarListingPage'
-import WithModel from '../components/WithModel'
-import store from '../store'
+/* eslint-disable no-unused-vars */
+import React from 'react';
+/* eslint-disable no-unused-vars */
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import CarListingPage from '../components/CarListingPage';
+import WithModel from '../components/WithModel';
+import store from '../store';
 import {
   fetchVehicleByPage,
   saveFavoriteVehicles,
   removeFavoriteVehicles,
   clearMonthlyVehiclePayments,
-} from '../store/actions'
+} from '../store/actions';
 
 const loadModel = async (props) => {
   const { pageId } = props
   await store.dispatch(fetchVehicleByPage(pageId))
   store.dispatch(clearMonthlyVehiclePayments())
-}
+};
 
 const routerProps = (state, ownProps) => ({
   pageId: ownProps.match.params.page,
-})
+});
 
 const mapStateToProps = (state) => {
   const {
@@ -31,7 +34,7 @@ const mapStateToProps = (state) => {
       ...car,
       isFavorite: favoriteVehicles.length > 0 && favoriteVehicles.find((({vin}) => vin === car.id)) && Object.keys(favoriteVehicles.find((({vin}) => vin === car.id))).length > 0
     })
-  })
+  });
 
   return ({
     vehicles: vehicleWithFavorites,
@@ -40,10 +43,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   saveFavoriteVehicles: (vin) => {
-    dispatch(saveFavoriteVehicles(vin))
+    dispatch(saveFavoriteVehicles(vin));
   },
+
   removeFavoriteVehicles: (vin) => {
-    dispatch(removeFavoriteVehicles(vin))
+    dispatch(removeFavoriteVehicles(vin));
   },
 })
 

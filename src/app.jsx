@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Navigation from './components/Navigation';
+import React from 'react';
+import Proptypes from 'prop-types';
 import 'normalize.css';
 
 import 'styles/base/_main.sass';  // Global styles
@@ -8,14 +8,14 @@ import 'styles/base/_common.sass';  // Global styles
 import styles from './app.sass'  // Css-module styles
 import fairImage from './images/fair.png';
 
-export default class App extends Component {
+export default class App extends React.Component {
   componentDidMount () {
-    setTimeout(() => { this.props.history.push('/listing/1') }, 4000)
+    const { history: { push } } = this.props;
+    setTimeout(() => { push('/listing/1') }, 4000);
   }
   render() {
     return (
       <div className='App'>
-        {/* <Navigation/> */}
         <div className={styles.wrap}>
           <div className={`${styles.top} ${styles.up}`}></div>
           <div className={`${styles.bottom} ${styles.down}`}></div>
@@ -28,3 +28,8 @@ export default class App extends Component {
   }
 }
 
+App.propTypes = {
+  history: Proptypes.shape({
+    push: Proptypes.func,
+}),
+}

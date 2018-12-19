@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import SliderComponent from '../SliderComponent'
+import React from 'react';
+import SliderComponent from '../SliderComponent';
 import NumberFormat from 'react-number-format';
 import Slider from "react-slick";
-import styles from '../../../styles/components/CarDetailsPage/index.sass'
+import styles from '../../../styles/components/CarDetailsPage/index.sass';
 
-export default class CarDetailsPage extends Component {
+export default class CarDetailsPage extends React.Component {
   constructor(props) {
     super(props);
     const {
       vehicle: {
         isFavorite,
       },
-    } = props
+    } = props;
 
     this.state = {
       isFavorite,
@@ -22,13 +22,13 @@ export default class CarDetailsPage extends Component {
 
   selectFavoriteCar = (e) => {
     const isChecked = e.target.checked
-    isChecked
-      ? this.props.saveFavoriteVehicles(e.target.id)
-      : this.props.removeFavoriteVehicles(e.target.id)
+      isChecked
+        ? this.props.saveFavoriteVehicles(e.target.id)
+        : this.props.removeFavoriteVehicles(e.target.id);
 
     this.setState({
       isFavorite: e.target.checked
-    })
+    });
   }
   
   render () {
@@ -43,13 +43,12 @@ export default class CarDetailsPage extends Component {
         product_financials,
         trim,
         image_location_list,
-        isFavorite,
       },
       payments: {
         monthly,
       },
       updateMonthlyVehiclePayments,
-    } = this.props
+    } = this.props;
 
     const gallerySettings = {
       dots: true,
@@ -60,7 +59,7 @@ export default class CarDetailsPage extends Component {
       slidesToScroll: 1
     };
 
-    const startingPayments = product_financials[0].start_fee_cents/100
+    const startingPayments = product_financials[0].start_fee_cents / 100;
 
     return (
       <div className='ui__bg-color--secondary animated fadeIn'>

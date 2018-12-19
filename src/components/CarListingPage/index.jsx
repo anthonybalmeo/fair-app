@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Proptypes from 'prop-types';
-import CarBlock from '../CarBlock'
+import CarBlock from '../CarBlock';
 
-export default class CarListingPage extends Component {
+export default class CarListingPage extends React.Component {
   render () {
     const {
       removeFavoriteVehicles,
       saveFavoriteVehicles,
       vehicles,
-    } = this.props
+    } = this.props;
 
     return (
       <div className='wrapper' data-test-id='car-listing-page'>

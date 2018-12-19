@@ -7,7 +7,7 @@ export const SAVE_FAVORITE_VEHICLES = 'SAVE_FAVORITE_VEHICLES';
 export const REMOVE_FAVORITE_VEHICLES = 'REMOVE_FAVORITE_VEHICLES';
 export const UPDATE_MONTHLY_VEHICLE_PAYMENTS = 'UPDATE_MONTHLY_VEHICLE_PAYMENTS';
 export const CLEAR_MONTHLY_VEHICLE_PAYMENTS = 'CLEAR_MONTHLY_VEHICLE_PAYMENTS';
-const apiUrl = 'https://private-4e19e-interviewapi3.apiary-mock.com/vehicles'
+const apiUrl = 'https://private-4e19e-interviewapi3.apiary-mock.com/vehicles';
 
 // ACTIONS
 export const saveVehicles = vehicles => ({
@@ -59,7 +59,7 @@ export const fetchVehicleByPage = pageId => {
   return (dispatch) => {
     return axios.get(`${apiUrl}?page=${pageId}`)
       .then(({data}) => {
-        return dispatch(saveVehicles(data.data.vehicles))
+        return dispatch(saveVehicles(data.data.vehicles));
       })
       .catch(error => {
         throw(error);
@@ -72,7 +72,7 @@ export const fetchVehicleByVin = vehicleVin => {
   return (dispatch) => {
     return axios.get(`${apiUrl}/${vehicleVin}`)
       .then(({data}) => {
-        return dispatch(saveVehicle(data.data.vehicle))
+        return dispatch(saveVehicle(data.data.vehicle));
       })
       .catch(error => {
         throw(error);

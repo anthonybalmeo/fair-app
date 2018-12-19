@@ -1,6 +1,6 @@
 ---
-  extends:
-    - babel-eslint
+  # extends:
+  #   - babel-eslint
   parser: babel-eslint
 
   env:

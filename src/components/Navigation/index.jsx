@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
+/* eslint-disable no-unused-vars */
 import {Link} from 'react-router-dom';
 // import fairImage from '../../images/fair.png';
 

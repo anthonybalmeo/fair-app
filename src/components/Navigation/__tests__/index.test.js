@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { configure, mount, shallow } from 'enzyme';
+/* eslint-disable no-unused-vars */
+import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Navigation from '../'
+import Navigation from '../';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 configure({ adapter: new Adapter() });

@@ -29,8 +29,8 @@ export const vehicle2 = {
 }
 
 export const vehicleWithFavorite1 = {
-    ...vehicle1,
-    isFavorite: true,
+  ...vehicle1,
+  isFavorite: true,
 }
 
 export const vehicleWithFavorite2 = {

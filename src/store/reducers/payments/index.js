@@ -1,4 +1,4 @@
-import { UPDATE_MONTHLY_VEHICLE_PAYMENTS, CLEAR_MONTHLY_VEHICLE_PAYMENTS } from '../../actions'
+import { UPDATE_MONTHLY_VEHICLE_PAYMENTS, CLEAR_MONTHLY_VEHICLE_PAYMENTS } from '../../actions';
 
 const initialState = {
   monthly: 0,

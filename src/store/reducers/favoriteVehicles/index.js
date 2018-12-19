@@ -1,4 +1,4 @@
-import { SAVE_FAVORITE_VEHICLES, REMOVE_FAVORITE_VEHICLES } from '../../actions'
+import { SAVE_FAVORITE_VEHICLES, REMOVE_FAVORITE_VEHICLES } from '../../actions';
 
 const vehicle = (state = [], action) => {
   switch (action.type) {
