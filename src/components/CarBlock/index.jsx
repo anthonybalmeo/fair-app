@@ -3,32 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from '../../../styles/components/CarBlock/index.sass';
 import Proptypes from 'prop-types';
 import NumberFormat from 'react-number-format';
-
+import FavoriteHeart from '../FavoriteHeart';
 
 export default class CarBlock extends React.Component {
-  constructor(props) {
-    super(props);
-    const {
-      vehicle: {
-        isFavorite,
-      },
-    } = props;
-
-    this.state = { isFavorited: isFavorite };
-    this.selectFavoriteCar = this.selectFavoriteCar.bind(this);
-  }
-
-  selectFavoriteCar = (e) => {
-    const isChecked = e.target.checked
-      isChecked
-        ? this.props.saveFavoriteVehicles(e.target.id)
-        : this.props.removeFavoriteVehicles(e.target.id);
-
-    this.setState({
-      isFavorited: e.target.checked
-    });
-  }
-
   render () {
     const {
       vehicle: {
@@ -40,7 +17,10 @@ export default class CarBlock extends React.Component {
         model_year,
         product_financials,
         trim,
+        isFavorite,
       },
+      saveFavoriteVehicles,
+      removeFavoriteVehicles,
     } = this.props;
 
     const monthlyPayments = product_financials[0].monthly_payment_cents / 100;
@@ -64,19 +44,12 @@ export default class CarBlock extends React.Component {
           </Link>
         </div>
         <div className='col-xs-6 ui__text-align--left'>
-          <div className='checkbox-container'>
-            <input
-              type='checkbox' id={`${id}`}
-              className={styles.FavoriteCheckbox}
-              onChange={this.selectFavoriteCar}
-              defaultChecked={this.state.isFavorited}
-              data-test-id={`${id}-favorite-checkbox-input`}
-            />
-            <label
-            htmlFor={`${id}`}
-            data-test-id={`${id}-favorite-checkbox-label`}
-            />
-          </div>
+          <FavoriteHeart
+            id={id}
+            defaultFavorite={isFavorite}
+            saveFavoriteVehicles={saveFavoriteVehicles}
+            removeFavoriteVehicles={removeFavoriteVehicles}
+          />
         </div>
         <div className='col-xs-6 ui__text-align--right'>
           <NumberFormat value={startingFee} prefix={'$'} displayType={'text'} className={`${styles.TextEmphasize} primary`} />

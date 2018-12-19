@@ -1,36 +1,11 @@
 import React from 'react';
 import SliderComponent from '../SliderComponent';
 import NumberFormat from 'react-number-format';
+import FavoriteHeart from '../FavoriteHeart';
 import Slider from "react-slick";
 import styles from '../../../styles/components/CarDetailsPage/index.sass';
 
 export default class CarDetailsPage extends React.Component {
-  constructor(props) {
-    super(props);
-    const {
-      vehicle: {
-        isFavorite,
-      },
-    } = props;
-
-    this.state = {
-      isFavorite,
-    };
-
-    this.selectFavoriteCar = this.selectFavoriteCar.bind(this);
-  }
-
-  selectFavoriteCar = (e) => {
-    const isChecked = e.target.checked
-      isChecked
-        ? this.props.saveFavoriteVehicles(e.target.id)
-        : this.props.removeFavoriteVehicles(e.target.id);
-
-    this.setState({
-      isFavorite: e.target.checked
-    });
-  }
-  
   render () {
     const {
       vehicle: {
@@ -43,11 +18,14 @@ export default class CarDetailsPage extends React.Component {
         product_financials,
         trim,
         image_location_list,
+        isFavorite,
       },
       payments: {
         monthly,
       },
       updateMonthlyVehiclePayments,
+      saveFavoriteVehicles,
+      removeFavoriteVehicles,
     } = this.props;
 
     const gallerySettings = {
@@ -78,19 +56,13 @@ export default class CarDetailsPage extends React.Component {
             <div className='col-xs-12 ui__bg-color--primary'>
                 <div className='row middle-xs ui__p--2'>
                 <div className='col-xs-12'>
-                  <div className='checkbox-container ui__ml--1 ui__mb--2'>
-                    <input
-                      type='checkbox' id={`${id}`}
-                      className={styles.FavoriteCheckbox}
-                      onChange={this.selectFavoriteCar}
-                      defaultChecked={this.state.isFavorite}
-                      data-test-id={`${id}-favorite-checkbox-input`}
-                    />
-                    <label
-                    htmlFor={`${id}`}
-                    data-test-id={`${id}-favorite-checkbox-label`}
-                    />
-                  </div>
+                  <FavoriteHeart
+                    className='ui__ml--1 ui__mb--2'
+                    id={id}
+                    defaultFavorite={isFavorite}
+                    saveFavoriteVehicles={saveFavoriteVehicles}
+                    removeFavoriteVehicles={removeFavoriteVehicles}
+                  />
                 </div>
                   <div className='col-xs-6 col-sm-6 col-md-8 col-lg-8'>
                     <p className={`primary ${styles.yearMake}`}>{model_year} {make}</p>
