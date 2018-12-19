@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import SliderComponent from '../SliderComponent';
 import NumberFormat from 'react-number-format';
 import FavoriteHeart from '../FavoriteHeart';
@@ -40,7 +41,7 @@ export default class CarDetailsPage extends React.Component {
     const startingPayments = product_financials[0].start_fee_cents / 100;
 
     return (
-      <div className='ui__bg-color--secondary animated fadeIn'>
+      <div className='ui__bg-color--secondary animated fadeIn' data-test-id='car-details-page'>
         <div className='wrapper'>
           <div className='row middle-xs'>
             <div className='col-xs-offset-2 col-xs-8 ui__mb--3'>
@@ -93,4 +94,25 @@ export default class CarDetailsPage extends React.Component {
       </div>
     )
   }
+}
+
+CarDetailsPage.propTypes = {
+  updateMonthlyVehiclePayments: Proptypes.func,
+  removeFavoriteVehicles: Proptypes.func,
+  saveFavoriteVehicles: Proptypes.func,
+  vehicle: Proptypes.shape({
+    chrome_image_url: Proptypes.string,
+    id: Proptypes.string,
+    make: Proptypes.string,
+    mileage: Proptypes.number,
+    model: Proptypes.string,
+    model_year: Proptypes.string,
+    product_financials: Proptypes.arrayOf(
+      Proptypes.shape({
+        id: Proptypes.number,
+        monthly_payment_cents: Proptypes.number,
+        start_fee_cents: Proptypes.number,
+    })),
+    isFavorite: Proptypes.bool,
+  }),
 }
