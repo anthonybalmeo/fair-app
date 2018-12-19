@@ -12,6 +12,7 @@ import {
   removeFavoriteVehicles,
   clearMonthlyVehiclePayments,
 } from '../store/actions';
+import { checkVehicleIsFavorite } from '../utils/check-is-favorite'
 
 const loadModel = async (props) => {
   const { pageId } = props
@@ -29,10 +30,10 @@ const mapStateToProps = (state) => {
     favoriteVehicles,
   } = state;
   
-  const vehicleWithFavorites = vehicles.map(car => {
+  const vehicleWithFavorites = vehicles.map(vehicle => {
     return ({
-      ...car,
-      isFavorite: favoriteVehicles.length > 0 && favoriteVehicles.find((({vin}) => vin === car.id)) && Object.keys(favoriteVehicles.find((({vin}) => vin === car.id))).length > 0
+      ...vehicle,
+      isFavorite: checkVehicleIsFavorite(vehicle, favoriteVehicles)
     })
   });
 

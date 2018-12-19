@@ -6,6 +6,7 @@ import { compose } from 'redux';
 import CarDetailsPage from '../components/CarDetailsPage';
 import WithModel from '../components/WithModel';
 import store from '../store';
+import { checkVehicleIsFavorite } from  '../utils/check-is-favorite';
 import {
   fetchVehicleByVin,
   saveFavoriteVehicles,
@@ -43,7 +44,7 @@ const mapStateToProps = (state) => {
 
   const vehicleWithFavorite = {
     ...vehicle,
-    isFavorite: favoriteVehicles.length > 0 && favoriteVehicles.find((({vin}) => vin === vehicle.id)) && Object.keys(favoriteVehicles.find((({vin}) => vin === vehicle.id))).length > 0,
+    isFavorite: checkVehicleIsFavorite(vehicle, favoriteVehicles)
   };
 
   return ({
