@@ -11,7 +11,7 @@ export default class CarListingPage extends Component {
     } = this.props
 
     return (
-      <div className='wrapper'>
+      <div className='wrapper' data-test-id='car-listing-page'>
         <div className='row'>
         {  
           vehicles.map((vehicle, i) => (

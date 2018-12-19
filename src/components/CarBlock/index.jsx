@@ -47,7 +47,7 @@ export default class CarBlock extends Component {
     const startingFee = product_financials[0].start_fee_cents/100
 
     return (
-      <div className={`row middle-xs ${styles.CarBlock}`}>
+      <div className={`row middle-xs ${styles.CarBlock}`} data-test-id='car-block'>
         <div className='col-xs-6 ui__text-align--left'>
           <p className={`${styles.TextSecondary} secondary`}>{model_year} {make}</p>
           <p className={`${styles.TextPrimary} primary`}>{model} {trim}</p>
@@ -70,8 +70,12 @@ export default class CarBlock extends Component {
               className={styles.FavoriteCheckbox}
               onChange={this.selectFavoriteCar}
               defaultChecked={this.state.isFavorited}
+              data-test-id={`${id}-favorite-checkbox-input`}
             />
-            <label htmlFor={`${id}`}></label>
+            <label
+            htmlFor={`${id}`}
+            data-test-id={`${id}-favorite-checkbox-label`}
+            />
           </div>
         </div>
         <div className='col-xs-6 ui__text-align--right'>
