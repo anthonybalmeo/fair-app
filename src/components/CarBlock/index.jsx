@@ -51,7 +51,7 @@ export default class CarBlock extends Component {
         <div className='col-xs-6 ui__text-align--left'>
           <p className={`${styles.TextSecondary} secondary`}>{model_year} {make}</p>
           <p className={`${styles.TextPrimary} primary`}>{model} {trim}</p>
-          <NumberFormat value={mileage} displayType={'text'} prefix={'Mileage: '} thousandSeparator={true} className={`${styles.TextSecondary} secondary`} />
+          <p><NumberFormat value={mileage} displayType={'text'} prefix={'Mileage: '} thousandSeparator={true} className={`${styles.TextSecondary} secondary`} /></p>
         </div>
         <div className='col-xs-6 ui__text-align--right'>
           <p className={`${styles.TextSecondary} secondary`}>As low as</p>
