@@ -4,6 +4,7 @@ import React from 'react';
 
 
 export const checkVehicleIsFavorite = (vehicle, vehicleFavoriteList) => {
+  if (!vehicle) return false
   const {
     id
   } = vehicle;

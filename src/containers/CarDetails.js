@@ -13,13 +13,20 @@ import {
   saveFavoriteVehicles,
   removeFavoriteVehicles,
   updateMonthlyVehiclepaymentsPerMiles,
+  saveVehicle,
 } from '../store/actions';
 
 const loadModel = async (props) => {
   try {
-    // LOAD SPECIFIC VEHICLE BY VIN
+    const { vehicles } = store.getState()
     const { vehicleVin } = props;
-    const { payload: { vehicle: { product_financials } } }  = await store.dispatch(fetchVehicleByVin(vehicleVin));
+    
+    const loadedVehicle = vehicles.find(({id}) => id === props.vehicleVin)
+
+    // CHECKS IF VEHICLE IS LOADED INTO STATE BEFORE LOADING AGAIN
+    const { payload: { vehicle: { product_financials } } }  = loadedVehicle
+      ? store.dispatch(saveVehicle(loadedVehicle))
+      : await store.dispatch(fetchVehicleByVin(vehicleVin))
 
     // STORES INITIAL PAYMENT OPTIONS FOR SELECTED VEHICLE
     const {
@@ -30,16 +37,22 @@ const loadModel = async (props) => {
       monthly: monthly_payment_cents / 100,
       miles: 10000,
     };
+
     store.dispatch(updateMonthlyVehiclepaymentsPerMiles(paymentsPerMiles.monthly, paymentsPerMiles.miles));
+
   } catch (e) {
-    // props.history.push('/error')
+    // REDIRECTING ONLY CAUSE ENDPOINT IS MISSING. REDIRECT TO LISTING ROUTE
+    props.history.push('/listing')
   }
 }
 
 // RETRIEVES DYNAMIC VIN FROM URL
-const routerProps = (state, ownProps) => ({
-  vehicleVin: ownProps.match.params.vehicleVin,
-});
+const routerProps = (state, ownProps) => {
+
+  return({
+    vehicleVin: ownProps.match.params.vehicleVin,
+  });
+}
 
 const mapStateToProps = (state) => {
   const {

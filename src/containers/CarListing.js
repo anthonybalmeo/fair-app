@@ -16,9 +16,20 @@ import {
 import { checkVehicleIsFavorite } from '../utils/check-is-favorite'
 
 const loadModel = async (props) => {
+  try {
+  const { vehicles } = store.getState()
   const { pageId } = props
+
+  // PREVENTS RELOADING VEHICLE ENDPOINT IF ALREADY VEHICLES IN STATE
+  if (vehicles) return
+  
   await store.dispatch(fetchVehicleByPage(pageId))
+
+  // RESETS VEHICLE MONTHLY PAYMENTS DATA IN STATE
   store.dispatch(clearMonthlyVehiclePayments())
+  } catch (e) {
+    console.error(e)
+  }
 };
 
 const routerProps = (state, ownProps) => ({
