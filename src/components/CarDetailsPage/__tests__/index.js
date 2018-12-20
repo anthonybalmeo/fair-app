@@ -14,7 +14,10 @@ describe('CarDetailsPage', () => {
 
   beforeEach(() => {
     props = {
-      payments: { monthly: 290 },
+      paymentsPerMiles: {
+        monthly: 290,
+        miles: 10000,
+      },
       vehicle: vehicleWithFavorite1,
       saveFavoriteVehicles: jest.fn(),
       removeFavoriteVehicles: jest.fn(),
