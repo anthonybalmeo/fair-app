@@ -1,5 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import Navigation from '../Navigation'
 import CarBlock from '../CarBlock';
 import Pagination from '../Pagination'
 
@@ -14,28 +15,34 @@ export default class CarListingPage extends React.Component {
 
     const paginationList = ['1', '2', '3']
     return (
-      <div className='wrapper' data-test-id='car-listing-page'>
-        <div className='row animated fadeIn'>
-        {  
-          vehicles.map((vehicle, i) => (
-            <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4' key={i}>
-              <CarBlock
-                vehicle={vehicle}
-                saveFavoriteVehicles={saveFavoriteVehicles}
-                removeFavoriteVehicles={removeFavoriteVehicles}
-                key={i}
-              />
-            </div>
-          ))
-        }
-        <div className='col-xs-12'>
-          <Pagination
-            currentPage={page}
-            pages={paginationList}
-          />
+      <React.Fragment>
+        <Navigation />
+        <div className='wrapper ui__pl--1 ui__pr--1' data-test-id='car-listing-page'>
+          <h1 className='ui__page-title ui__mt--2'>Find a fair car</h1>
+          <hr className='ui__hr ui__mb--3' />
+
+          <div className='row animated fadeIn'>
+          {  
+            vehicles.map((vehicle, i) => (
+              <div className='col-xs-12 col-sm-6 col-md-4 col-lg-4' key={i}>
+                <CarBlock
+                  vehicle={vehicle}
+                  saveFavoriteVehicles={saveFavoriteVehicles}
+                  removeFavoriteVehicles={removeFavoriteVehicles}
+                  key={i}
+                />
+              </div>
+            ))
+          }
+          <div className='col-xs-12'>
+            <Pagination
+              currentPage={page}
+              pages={paginationList}
+            />
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
+      </React.Fragment>
     )
   }
 }

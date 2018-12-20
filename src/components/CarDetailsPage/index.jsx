@@ -1,5 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import Navigation from '../Navigation'
 import SliderComponent from '../SliderComponent';
 import NumberFormat from 'react-number-format';
 import FavoriteHeart from '../FavoriteHeart';
@@ -43,6 +44,7 @@ export default class CarDetailsPage extends React.Component {
 
     return (
       <div className='ui__bg-color--secondary animated fadeIn' data-test-id='car-details-page'>
+        <Navigation />
         <div className='wrapper'>
           <div className='row middle-xs'>
             <div className='col-xs-offset-2 col-xs-8 ui__mb--3'>

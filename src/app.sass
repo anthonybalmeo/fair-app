@@ -18,7 +18,8 @@
   position: relative
   z-index: 1
   height: 50vh
-  transition: transform 500ms ease 1000ms
+  transition: transform 500ms ease
+  transform: translateY(0)
 
 .top
   background: $color-highlight
@@ -26,23 +27,8 @@
 .bottom
   background: $color-highlight
 
-.button
-  align-self: center
-  position: absolute
-  background: #222
-  color: #fff
-  padding: 15px 30px
-  cursor: pointer
-  position: relative
-  z-index: 2
-  margin: -24px 0
-  transition: transform 300ms ease 300ms
-
 .up
   transform: translateY(-100%)
-
-.left
-  transform: translateX(-100%)
 
 .down
   transform: translateY(100%)
