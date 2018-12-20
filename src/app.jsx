@@ -20,7 +20,7 @@ export default class App extends React.Component {
           <div className={`${styles.top} ${styles.up}`}></div>
           <div className={`${styles.bottom} ${styles.down}`}></div>
         </div>
-        <div className={styles.content}>
+        <div className={`${styles.content} animated fadeIn`}>
           <img src={fairImage} className={`${styles.logo} animated tada delay-1s`} />
         </div>
       </div>

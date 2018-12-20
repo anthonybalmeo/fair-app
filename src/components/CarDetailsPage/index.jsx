@@ -55,7 +55,7 @@ export default class CarDetailsPage extends React.Component {
               }
             </Slider>
             </div>
-            <div className='col-xs-12 ui__bg-color--primary'>
+            <div className='col-xs-12 ui__bg-color--primary ui__mb--4'>
                 <div className='row middle-xs ui__p--2'>
                 <div className='col-xs-12 ui__text-align--center-mobile-and-tablet'>
                   <FavoriteHeart
