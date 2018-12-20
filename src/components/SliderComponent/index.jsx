@@ -73,7 +73,7 @@ class SliderComponent extends React.Component {
     const sliderLabel = this.createSliderLabel(minimum);
 
     return (
-      <div className='fair-slider ui__mt--2'>
+      <div className='fair-slider ui__mt--2' data-test-id='slider-component'>
         <Slider
           min={minimum}
           max={maximum}
