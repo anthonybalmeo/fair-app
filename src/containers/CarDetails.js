@@ -16,20 +16,24 @@ import {
 } from '../store/actions';
 
 const loadModel = async (props) => {
-  // LOAD SPECIFIC VEHICLE BY VIN
-  const { vehicleVin } = props;
-  const { payload: { vehicle: { product_financials } } }  = await store.dispatch(fetchVehicleByVin(vehicleVin));
+  try {
+    // LOAD SPECIFIC VEHICLE BY VIN
+    const { vehicleVin } = props;
+    const { payload: { vehicle: { product_financials } } }  = await store.dispatch(fetchVehicleByVin(vehicleVin));
 
-  // STORES INITIAL PAYMENT OPTIONS FOR SELECTED VEHICLE
-  const {
-    monthly_payment_cents,
-  } = product_financials[0];
+    // STORES INITIAL PAYMENT OPTIONS FOR SELECTED VEHICLE
+    const {
+      monthly_payment_cents,
+    } = product_financials[0];
 
-  const paymentsPerMiles = {
-    monthly: monthly_payment_cents / 100,
-    miles: 10000,
-  };
-  store.dispatch(updateMonthlyVehiclepaymentsPerMiles(paymentsPerMiles.monthly, paymentsPerMiles.miles));
+    const paymentsPerMiles = {
+      monthly: monthly_payment_cents / 100,
+      miles: 10000,
+    };
+    store.dispatch(updateMonthlyVehiclepaymentsPerMiles(paymentsPerMiles.monthly, paymentsPerMiles.miles));
+  } catch (e) {
+    // props.history.push('/error')
+  }
 }
 
 // RETRIEVES DYNAMIC VIN FROM URL
