@@ -18,13 +18,14 @@ A simple React app that hits an apiary stubbed API endpoints to display a list o
 ##### Architecture
 - Used a container/component approach. Will load necessary data in the container and wrap data with HOC.
 - Styles are broken down by components and shareable styles. Made to be responsive as well.
+- Utilized `flexboxgrid-sass` for simple grid solution
 - Broke down necessary components for resuable around different pages
 - Build a loading screen component to display when data is loading
 - WithModel will do any data loading needed. Will take in an optional loading component
 - Added jest component testing
 - Added prop checking with `PropTypes`
 - Created fixture files for reusable test data
-- Action/Reducers in store to manage state
+- Action/Reducers in store to manage state [`react-redux`]
 - States in redux:
     - `vehicle`
         - The vehicle in details route.
