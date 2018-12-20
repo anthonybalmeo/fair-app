@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import CarDetailsPage from '../components/CarDetailsPage';
 import WithModel from '../components/WithModel';
+import { LoadingScreen } from '../components/LoadingScreen'
 import store from '../store';
 import { checkVehicleIsFavorite } from  '../utils/check-is-favorite';
 import {
@@ -68,6 +69,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default compose(
   connect(routerProps),
-  WithModel(loadModel),
+  WithModel(loadModel, LoadingScreen('Loading car details ...')),
   connect(mapStateToProps, mapDispatchToProps)
 )(CarDetailsPage)

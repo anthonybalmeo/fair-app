@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import CarListingPage from '../components/CarListingPage';
 import WithModel from '../components/WithModel';
+import { LoadingScreen } from '../components/LoadingScreen'
 import store from '../store';
 import {
   fetchVehicleByPage,
@@ -54,6 +55,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default compose(
   connect(routerProps),
-  WithModel(loadModel),
+  WithModel(loadModel, LoadingScreen()),
   connect(mapStateToProps, mapDispatchToProps)
 )(CarListingPage)
