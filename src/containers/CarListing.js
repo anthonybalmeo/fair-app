@@ -44,6 +44,7 @@ const mapStateToProps = (state, ownProps) => {
   } = state;
   const { page } = ownProps.match.params
   
+  // MAPS VEHICLE DATA WITH FAVORITE BOOLEAN
   const vehicleWithFavorites = vehicles.map(vehicle => {
     return ({
       ...vehicle,

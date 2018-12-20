@@ -3,6 +3,7 @@ import React from 'react';
 /*eslint-disable no-unused-vars*/
 
 
+// CHECKS IF VEHCILE IS IN THE FAVORITE LIST
 export const checkVehicleIsFavorite = (vehicle, vehicleFavoriteList) => {
   if (!vehicle) return false
   const {

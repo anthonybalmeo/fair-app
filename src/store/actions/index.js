@@ -17,6 +17,14 @@ export const saveVehicles = vehicles => ({
   }
 });
 
+export const saveVehicle = vehicle => ({
+  type: SAVE_VEHICLE,
+  payload: {
+    vehicle,
+  }
+});
+
+// HANDLES FAVORITING VEHICLE
 export const saveFavoriteVehicles = vin => ({
   type: SAVE_FAVORITE_VEHICLES,
   payload: {
@@ -31,13 +39,7 @@ export const removeFavoriteVehicles = vin => ({
   }
 });
 
-export const saveVehicle = vehicle => ({
-  type: SAVE_VEHICLE,
-  payload: {
-    vehicle,
-  }
-});
-
+// RESETS THE MONTHLY PAYMENTS AND MILES STATE WHEN ADJUSTED
 export const updateMonthlyVehiclepaymentsPerMiles  = (monthly, miles) => ({
   type: UPDATE_MONTHLY_VEHICLE_PAYMENTS_PER_MILES,
   payload: {
@@ -48,6 +50,7 @@ export const updateMonthlyVehiclepaymentsPerMiles  = (monthly, miles) => ({
   }
 });
 
+// RESETS THE MONTHLY PAYMENTS AND MILES STATE
 export const clearMonthlyVehiclePayments  = () => ({
   type: CLEAR_MONTHLY_VEHICLE_PAYMENTS_PER_MILES,
   payload: {
@@ -58,7 +61,7 @@ export const clearMonthlyVehiclePayments  = () => ({
   }
 });
 
-// THUNK
+// FETCHES VEHICLES BY PAGE ID AND SAVES VEHICLES TO STATE
 export const fetchVehicleByPage = pageId => {
   return (dispatch) => {
     return axios.get(`${apiUrl}?page=${pageId}`)
@@ -71,7 +74,7 @@ export const fetchVehicleByPage = pageId => {
   };
 };
 
-// THUNK
+// FETCHES VEHICLE BY VIN ID AND SAVES VEHICLE TO STATE
 export const fetchVehicleByVin = vehicleVin => {
   return (dispatch) => {
     return axios.get(`${apiUrl}/${vehicleVin}`)
