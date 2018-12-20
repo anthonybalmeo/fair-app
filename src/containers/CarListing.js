@@ -20,13 +20,14 @@ const loadModel = async (props) => {
   const { vehicles } = store.getState()
   const { pageId } = props
 
+  // RESETS VEHICLE MONTHLY PAYMENTS DATA IN STATE
+  store.dispatch(clearMonthlyVehiclePayments())
+
   // PREVENTS RELOADING VEHICLE ENDPOINT IF ALREADY VEHICLES IN STATE
   if (vehicles) return
   
   await store.dispatch(fetchVehicleByPage(pageId))
 
-  // RESETS VEHICLE MONTHLY PAYMENTS DATA IN STATE
-  store.dispatch(clearMonthlyVehiclePayments())
   } catch (e) {
     console.error(e)
   }
