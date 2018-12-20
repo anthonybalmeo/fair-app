@@ -11,7 +11,7 @@ import {
   fetchVehicleByVin,
   saveFavoriteVehicles,
   removeFavoriteVehicles,
-  updateMonthlyVehiclePayments,
+  updateMonthlyVehiclepaymentsPerMiles,
 } from '../store/actions';
 
 const loadModel = async (props) => {
@@ -24,10 +24,11 @@ const loadModel = async (props) => {
     monthly_payment_cents,
   } = product_financials[0];
 
-  const payments = {
+  const paymentsPerMiles = {
     monthly: monthly_payment_cents / 100,
+    miles: 10000,
   };
-  store.dispatch(updateMonthlyVehiclePayments(payments));
+  store.dispatch(updateMonthlyVehiclepaymentsPerMiles(paymentsPerMiles.monthly, paymentsPerMiles.miles));
 }
 
 // RETRIEVES DYNAMIC VIN FROM URL
@@ -39,7 +40,7 @@ const mapStateToProps = (state) => {
   const {
     vehicle,
     favoriteVehicles,
-    payments,
+    paymentsPerMiles,
   } = state;
 
   const vehicleWithFavorite = {
@@ -49,7 +50,7 @@ const mapStateToProps = (state) => {
 
   return ({
     vehicle: vehicleWithFavorite,
-    payments,
+    paymentsPerMiles,
   })
 }
 
@@ -60,8 +61,8 @@ const mapDispatchToProps = (dispatch) => ({
   removeFavoriteVehicles: (vin) => {
     dispatch(removeFavoriteVehicles(vin));
   },
-  updateMonthlyVehiclePayments: (payments) => {
-    dispatch(updateMonthlyVehiclePayments(payments));
+  updateMonthlyVehiclepaymentsPerMiles: (payments, miles) => {
+    dispatch(updateMonthlyVehiclepaymentsPerMiles(payments, miles));
   }
 });
 

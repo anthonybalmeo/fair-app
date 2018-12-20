@@ -21,10 +21,11 @@ export default class CarDetailsPage extends React.Component {
         image_location_list,
         isFavorite,
       },
-      payments: {
+      paymentsPerMiles: {
         monthly,
+        miles,
       },
-      updateMonthlyVehiclePayments,
+      updateMonthlyVehiclepaymentsPerMiles,
       saveFavoriteVehicles,
       removeFavoriteVehicles,
     } = this.props;
@@ -56,7 +57,7 @@ export default class CarDetailsPage extends React.Component {
             </div>
             <div className='col-xs-12 ui__bg-color--primary'>
                 <div className='row middle-xs ui__p--2'>
-                <div className='col-xs-12'>
+                <div className='col-xs-12 ui__text-align--center-mobile-and-tablet'>
                   <FavoriteHeart
                     className='ui__ml--1 ui__mb--2'
                     id={id}
@@ -65,26 +66,42 @@ export default class CarDetailsPage extends React.Component {
                     removeFavoriteVehicles={removeFavoriteVehicles}
                   />
                 </div>
-                  <div className='col-xs-6 col-sm-6 col-md-8 col-lg-8'>
+                  <div className='col-xs-12 col-md-6 col-lg-8 ui__text-align--center-mobile-and-tablet'>
                     <p className={`primary ${styles.yearMake}`}>{model_year} {make}</p>
                     <p className={`primary ${styles.modelTrim}`}>{model} {trim}</p>
-                    <p className={`${styles.mileage} highlight`}><NumberFormat value={mileage} displayType={'text'} thousandSeparator={true} /> Mi.</p>
+                    <p className={`${styles.mileage} highlight ui__mb--2`}><NumberFormat value={mileage} displayType={'text'} thousandSeparator={true} /> Mi.</p>
                   </div>
-                  <div className='col-xs-3 col-sm-3 col-md-2 col-lg-2 ui__text-align--center ui__border ui__border--r'>
+                  <div className='col-xs-6 col-md-3 col-lg-2 ui__text-align--center ui__border ui__border--r'>
                     <p className={`${styles.paymentPricePrimary} primary`}>Monthy Pymt.</p>
                     <p className={`${styles.paymentPrice} highlight`}><NumberFormat value={monthly} prefix={'$'} displayType={'text'} /></p>
                     <p className={`${styles.paymentSecondary} secondary`}>Payments Estimated</p>
                   </div>
-                  <div className='col-xs-3 col-sm-3 col-md-2 col-lg-2 ui__text-align--center'>
+                  <div className='col-xs-6 col-md-3 col-lg-2 ui__text-align--center'>
                     <p className={`${styles.paymentPricePrimary} primary`}>Start Pymt.</p>
                     <p className={`${styles.paymentPrice} primary`}><NumberFormat value={startingPayments} prefix={'$'} displayType={'text'} /></p>
                     <p className={`${styles.paymentSecondary} secondary`}>Down Payment</p>
                   </div>
                   <div className='col-xs-12'>
+                    <hr className='ui__hr ui__mt--4 ui__mb--3' />
+                  </div>
+                  <div className='col-xs-12 ui__mt-2 ui__mb--2'>
+                    <h1 className='ui__text-align--center'>Extra Miles</h1>
+                    <p className={`${styles.extraMilesSubheader} ui__mb--1 ui__ml--a ui__mr--a`}>Add extra miles to avoid exceeding your limit. We'll refund you any extra miles you don't use.</p>
+                  </div>
+                  <div className='col-xs-6 col-md-3 col-md-offset-3 ui__text-align--center'>
+                    <p className={styles.extraMilesTitle}>Yearly Mileage</p>
+                    <p className={styles.extraMilesValues}><NumberFormat value={miles} displayType={'text'} thousandSeparator={true}/></p>
+                  </div>
+                  <div className='col-xs-6 col-md-3 ui__text-align--center'>
+                    <p className={styles.extraMilesTitle}>Per Month</p>
+                    <p className={styles.extraMilesValues}><NumberFormat value={monthly} prefix={'$'} displayType={'text'} /></p>
+                  </div>
+                  <div className='col-xs-12 ui__mt--2 ui__pb--4'>
                     <SliderComponent
                       monthlyPayments={monthly}
+                      miles={miles}
                       startingPayments={startingPayments}
-                      updateMonthlyVehiclePayments={updateMonthlyVehiclePayments}
+                      updateMonthlyVehiclepaymentsPerMiles={updateMonthlyVehiclepaymentsPerMiles}
                     />
                   </div>
                 </div>
@@ -97,9 +114,13 @@ export default class CarDetailsPage extends React.Component {
 }
 
 CarDetailsPage.propTypes = {
-  updateMonthlyVehiclePayments: Proptypes.func,
+  updateMonthlyVehiclepaymentsPerMiles: Proptypes.func,
   removeFavoriteVehicles: Proptypes.func,
   saveFavoriteVehicles: Proptypes.func,
+  paymentsPerMiles: Proptypes.shape({
+    monthly: Proptypes.number,
+    miles: Proptypes.number,
+  }),
   vehicle: Proptypes.shape({
     chrome_image_url: Proptypes.string,
     id: Proptypes.string,

@@ -40,6 +40,9 @@
 
 // UI ELEMENTS
 .ui
+  &__hr
+    opacity: 0.25
+
   &__border
     border-width: 1px
     border-color: $color-secondary
@@ -64,11 +67,36 @@
   &__text-align
     &--center
       text-align: center
+
     &--left
       text-align: left
+
     &--right
       text-align: right
 
+    &--center-mobile-only
+      text-align: center
+
+      @media (min-width: 48em)
+        text-align: left
+
+    &--center-mobile-and-tablet
+      text-align: center
+
+      @media (min-width: 62em)
+        text-align: left
+
+    &--center-tablet-and-desktop
+      text-align: left
+
+      @media (min-width: 48em)
+        text-align: center
+
+    &--center-desktop-only
+      text-align: left
+
+      @media (min-width: 62em)
+        text-align: center
 
 // MARGIN + PADDING SPACING BY REM
 @for $i from 0 through 4

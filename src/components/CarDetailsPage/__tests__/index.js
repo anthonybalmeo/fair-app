@@ -18,7 +18,7 @@ describe('CarDetailsPage', () => {
       vehicle: vehicleWithFavorite1,
       saveFavoriteVehicles: jest.fn(),
       removeFavoriteVehicles: jest.fn(),
-      updateMonthlyVehiclePayments: jest.fn(),
+      updateMonthlyVehiclepaymentsPerMiles: jest.fn(),
     }
   })
 

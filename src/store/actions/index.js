@@ -5,8 +5,8 @@ export const SAVE_VEHICLES = 'SAVE_VEHICLES';
 export const SAVE_VEHICLE = 'SAVE_VEHICLE';
 export const SAVE_FAVORITE_VEHICLES = 'SAVE_FAVORITE_VEHICLES';
 export const REMOVE_FAVORITE_VEHICLES = 'REMOVE_FAVORITE_VEHICLES';
-export const UPDATE_MONTHLY_VEHICLE_PAYMENTS = 'UPDATE_MONTHLY_VEHICLE_PAYMENTS';
-export const CLEAR_MONTHLY_VEHICLE_PAYMENTS = 'CLEAR_MONTHLY_VEHICLE_PAYMENTS';
+export const UPDATE_MONTHLY_VEHICLE_PAYMENTS_PER_MILES = 'UPDATE_MONTHLY_VEHICLE_PAYMENTS_PER_MILES';
+export const CLEAR_MONTHLY_VEHICLE_PAYMENTS_PER_MILES = 'CLEAR_MONTHLY_VEHICLE_PAYMENTS_PER_MILES';
 const apiUrl = 'https://private-4e19e-interviewapi3.apiary-mock.com/vehicles';
 
 // ACTIONS
@@ -38,18 +38,22 @@ export const saveVehicle = vehicle => ({
   }
 });
 
-export const updateMonthlyVehiclePayments  = (payments) => ({
-  type: UPDATE_MONTHLY_VEHICLE_PAYMENTS,
+export const updateMonthlyVehiclepaymentsPerMiles  = (monthly, miles) => ({
+  type: UPDATE_MONTHLY_VEHICLE_PAYMENTS_PER_MILES,
   payload: {
-    payments,
+    payments: {
+      monthly,
+      miles,
+    },
   }
 });
 
 export const clearMonthlyVehiclePayments  = () => ({
-  type: CLEAR_MONTHLY_VEHICLE_PAYMENTS,
+  type: CLEAR_MONTHLY_VEHICLE_PAYMENTS_PER_MILES,
   payload: {
     payments: {
       monthly: 0,
+      miles: 0,
     },
   }
 });
