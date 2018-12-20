@@ -37,11 +37,12 @@ const routerProps = (state, ownProps) => ({
   pageId: ownProps.match.params.page,
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const {
     vehicles,
     favoriteVehicles,
   } = state;
+  const { page } = ownProps.match.params
   
   const vehicleWithFavorites = vehicles.map(vehicle => {
     return ({
@@ -51,6 +52,7 @@ const mapStateToProps = (state) => {
   });
 
   return ({
+    page,
     vehicles: vehicleWithFavorites,
   })
 }

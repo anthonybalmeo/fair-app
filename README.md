@@ -22,6 +22,7 @@ A simple React app that hits an apiary stubbed API endpoints to display a list o
 - Build a loading screen component to display when data is loading
 - WithModel will do any data loading needed. Will take in an optional loading component
 - Added jest component testing
+- Added prop checking with `PropTypes`
 - Created fixture files for reusable test data
 - Action/Reducers in store to manage state
 - States in redux:
@@ -44,6 +45,7 @@ A simple React app that hits an apiary stubbed API endpoints to display a list o
 - Saves vehicle data using redux to state.
 - Prevents loading the endpoint again if the data is already loaded into state.
 - Has a favorite feature that persist per car when going between the car listing and car details route.
+- Implemented pagination
 - `console.error(e)` if endpoint does not return value
 
 ###### Note:

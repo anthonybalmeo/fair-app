@@ -1,6 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import CarBlock from '../CarBlock';
+import Pagination from '../Pagination'
 
 export default class CarListingPage extends React.Component {
   render () {
@@ -8,8 +9,10 @@ export default class CarListingPage extends React.Component {
       removeFavoriteVehicles,
       saveFavoriteVehicles,
       vehicles,
+      page,
     } = this.props;
 
+    const paginationList = ['1', '2', '3']
     return (
       <div className='wrapper' data-test-id='car-listing-page'>
         <div className='row animated fadeIn'>
@@ -25,6 +28,12 @@ export default class CarListingPage extends React.Component {
             </div>
           ))
         }
+        <div className='col-xs-12'>
+          <Pagination
+            currentPage={page}
+            pages={paginationList}
+          />
+        </div>
         </div>
       </div>
     )
@@ -32,6 +41,7 @@ export default class CarListingPage extends React.Component {
 }
 
 CarListingPage.propTypes = {
+  page: Proptypes.string,
   removeFavoriteVehicles: Proptypes.func,
   saveFavoriteVehicles: Proptypes.func,
   vehicles: Proptypes.arrayOf(
