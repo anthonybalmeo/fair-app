@@ -1,5 +1,5 @@
 <p align="center">
-    <h3 align="center">FAIR | Take home Interview<br></h3>
+    <h3 align="center">FAIR | Car Selection App<br></h3>
 </p>
 
 [![CircleCI](https://circleci.com/gh/ReactJSResources/react-webpack-babel/tree/master.svg?style=svg)](https://circleci.com/gh/ReactJSResources/react-webpack-babel/tree/master)
